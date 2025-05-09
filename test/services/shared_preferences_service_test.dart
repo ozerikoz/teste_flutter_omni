@@ -27,9 +27,13 @@ void main() {
       test(
         "deve retornar null quando nenhum valor estiver armazenado",
         () async {
+          // Arrange
           await setupMockWithValues({});
+
+          // Act
           final value = sharedPreferencesService.getString(stringKey);
 
+          // Assert
           expect(value, isNull, reason: "Chave foi encontrada");
         },
       );
@@ -55,12 +59,15 @@ void main() {
       test(
         "deve armazenar um valor que pode ser recuperado posteriormente",
         () async {
+          // Arrange
           await setupMockWithValues({stringKey: stringValue});
 
+          // Act
           await sharedPreferencesService.setString(stringKey, stringValue);
 
           final retrievedValue = sharedPreferencesService.getString(stringKey);
 
+          // Assert
           expect(
             retrievedValue,
             stringValue,
@@ -75,21 +82,27 @@ void main() {
       test(
         "deve retornar null quando nenhuma lista estiver armazenada",
         () async {
+          // Arrange
           await setupMockWithValues({});
 
+          // Act
           final value = sharedPreferencesService.getStringList(listStringKey);
 
+          // Assert
           expect(value, isNull, reason: "Chave foi encontrada");
         },
       );
 
       test("deve retornar a lista correta quando estiver armazenada", () async {
+        // Arrange
         await setupMockWithValues({listStringKey: listStringValue});
 
+        // Act
         final actualList = sharedPreferencesService.getStringList(
           listStringKey,
         );
 
+        // Assert
         expect(
           actualList,
           listStringValue,
@@ -103,8 +116,10 @@ void main() {
       test(
         "deve armazenar uma lista que pode ser recuperada posteriormente",
         () async {
+          // Arrange
           setupMockWithValues({listStringKey: listStringValue});
 
+          // Act
           await sharedPreferencesService.setStringList(
             listStringKey,
             listStringValue,
@@ -114,6 +129,7 @@ void main() {
             listStringKey,
           );
 
+          // Assert
           expect(
             retrievedValue,
             listStringValue,
@@ -126,10 +142,13 @@ void main() {
     /// Testes para o método remove
     group("remove", () {
       test("deve remover uma chave previamente armazenada", () async {
+        // Arrange
         await setupMockWithValues({stringKey: stringValue});
 
+        // Act
         await sharedPreferencesService.remove(stringKey);
 
+        // Assert
         expect(sharedPreferencesService.getString(stringKey), isNull);
       });
     });
