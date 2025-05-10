@@ -1,6 +1,6 @@
 name: flutter_teste_omni
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   shared_preferences: ^2.5.3
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
@@ -20,6 +21,7 @@ dev_dependencies:
   build_runner: ^2.4.15
   freezed: ^3.0.6
   json_serializable: ^6.9.5
+  mocktail: ^1.0.1
 
 flutter:
   uses-material-design: true
