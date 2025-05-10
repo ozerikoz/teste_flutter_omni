@@ -9,7 +9,7 @@ sealed class BoardColumn with _$BoardColumn {
   const factory BoardColumn({
     required String id,
     required String title,
-    List<Task>? tasks,
+    required List<Task> tasks,
   }) = _BoardColumn;
 
   factory BoardColumn.fromJson(Map<String, dynamic> json) =>

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BoardColumn {
 
- String get id; String get title; List<Task>? get tasks;
+ String get id; String get title; List<Task> get tasks;
 /// Create a copy of BoardColumn
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $BoardColumnCopyWith<$Res>  {
   factory $BoardColumnCopyWith(BoardColumn value, $Res Function(BoardColumn) _then) = _$BoardColumnCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, List<Task>? tasks
+ String id, String title, List<Task> tasks
 });
 
 
@@ -66,12 +66,12 @@ class _$BoardColumnCopyWithImpl<$Res>
 
 /// Create a copy of BoardColumn
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? tasks = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,tasks: freezed == tasks ? _self.tasks : tasks // ignore: cast_nullable_to_non_nullable
-as List<Task>?,
+as String,tasks: null == tasks ? _self.tasks : tasks // ignore: cast_nullable_to_non_nullable
+as List<Task>,
   ));
 }
 
@@ -82,18 +82,16 @@ as List<Task>?,
 @JsonSerializable()
 
 class _BoardColumn implements BoardColumn {
-  const _BoardColumn({required this.id, required this.title, final  List<Task>? tasks}): _tasks = tasks;
+  const _BoardColumn({required this.id, required this.title, required final  List<Task> tasks}): _tasks = tasks;
   factory _BoardColumn.fromJson(Map<String, dynamic> json) => _$BoardColumnFromJson(json);
 
 @override final  String id;
 @override final  String title;
- final  List<Task>? _tasks;
-@override List<Task>? get tasks {
-  final value = _tasks;
-  if (value == null) return null;
+ final  List<Task> _tasks;
+@override List<Task> get tasks {
   if (_tasks is EqualUnmodifiableListView) return _tasks;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_tasks);
 }
 
 
@@ -130,7 +128,7 @@ abstract mixin class _$BoardColumnCopyWith<$Res> implements $BoardColumnCopyWith
   factory _$BoardColumnCopyWith(_BoardColumn value, $Res Function(_BoardColumn) _then) = __$BoardColumnCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, List<Task>? tasks
+ String id, String title, List<Task> tasks
 });
 
 
@@ -147,12 +145,12 @@ class __$BoardColumnCopyWithImpl<$Res>
 
 /// Create a copy of BoardColumn
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? tasks = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
   return _then(_BoardColumn(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,tasks: freezed == tasks ? _self._tasks : tasks // ignore: cast_nullable_to_non_nullable
-as List<Task>?,
+as String,tasks: null == tasks ? _self._tasks : tasks // ignore: cast_nullable_to_non_nullable
+as List<Task>,
   ));
 }
 

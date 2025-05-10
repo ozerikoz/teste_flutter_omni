@@ -10,8 +10,8 @@ _BoardColumn _$BoardColumnFromJson(Map<String, dynamic> json) => _BoardColumn(
   id: json['id'] as String,
   title: json['title'] as String,
   tasks:
-      (json['tasks'] as List<dynamic>?)
-          ?.map((e) => Task.fromJson(e as Map<String, dynamic>))
+      (json['tasks'] as List<dynamic>)
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
 
