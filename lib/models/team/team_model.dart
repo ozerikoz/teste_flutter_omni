@@ -8,7 +8,7 @@ sealed class TeamModel with _$TeamModel {
   const factory TeamModel({
     required String id,
     required String name,
-    required String color,
+    required int colorArgb,
   }) = _TeamModel;
 
   factory TeamModel.fromJson(Map<String, dynamic> json) =>
