@@ -17,7 +17,7 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
   String getColumnListKey(String boardId) => "columns_$boardId";
 
   @override
-  Future<void> addBoardColumn({
+  Future<BoardColumn> addBoardColumn({
     required String boardId,
     required String boardColumnTitle,
   }) async {
@@ -37,6 +37,8 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
       final updated = [...current, jsonEncode(boardColumn.toJson())];
 
       await _sharedPreferencesService.setStringList(key, updated);
+
+      return boardColumn;
     } catch (e) {
       throw Exception(
         "Erro ao adicionar a coluna $boardColumnId ao board $boardId: $e",
@@ -45,7 +47,7 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
   }
 
   @override
-  Future<void> editBoardColumn({
+  Future<BoardColumn> editBoardColumn({
     required String boardId,
     required BoardColumn boardColumn,
   }) async {
@@ -62,6 +64,8 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
           }).toList();
 
       await _sharedPreferencesService.setStringList(key, updated);
+
+      return boardColumn;
     } catch (e) {
       throw Exception(
         "Erro ao editar a coluna ${boardColumn.id} do board $boardId: $e",
