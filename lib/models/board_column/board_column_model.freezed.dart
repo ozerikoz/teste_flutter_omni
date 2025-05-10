@@ -14,22 +14,22 @@ part of 'board_column_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$BoardColumn {
+mixin _$BoardColumnModel {
 
- String get id; String get title; List<Task> get tasks;
-/// Create a copy of BoardColumn
+ String get id; String get title; List<TaskModel> get tasks;
+/// Create a copy of BoardColumnModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$BoardColumnCopyWith<BoardColumn> get copyWith => _$BoardColumnCopyWithImpl<BoardColumn>(this as BoardColumn, _$identity);
+$BoardColumnModelCopyWith<BoardColumnModel> get copyWith => _$BoardColumnModelCopyWithImpl<BoardColumnModel>(this as BoardColumnModel, _$identity);
 
-  /// Serializes this BoardColumn to a JSON map.
+  /// Serializes this BoardColumnModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BoardColumn&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.tasks, tasks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BoardColumnModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.tasks, tasks));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,18 +38,18 @@ int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEqualit
 
 @override
 String toString() {
-  return 'BoardColumn(id: $id, title: $title, tasks: $tasks)';
+  return 'BoardColumnModel(id: $id, title: $title, tasks: $tasks)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $BoardColumnCopyWith<$Res>  {
-  factory $BoardColumnCopyWith(BoardColumn value, $Res Function(BoardColumn) _then) = _$BoardColumnCopyWithImpl;
+abstract mixin class $BoardColumnModelCopyWith<$Res>  {
+  factory $BoardColumnModelCopyWith(BoardColumnModel value, $Res Function(BoardColumnModel) _then) = _$BoardColumnModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, List<Task> tasks
+ String id, String title, List<TaskModel> tasks
 });
 
 
@@ -57,21 +57,21 @@ $Res call({
 
 }
 /// @nodoc
-class _$BoardColumnCopyWithImpl<$Res>
-    implements $BoardColumnCopyWith<$Res> {
-  _$BoardColumnCopyWithImpl(this._self, this._then);
+class _$BoardColumnModelCopyWithImpl<$Res>
+    implements $BoardColumnModelCopyWith<$Res> {
+  _$BoardColumnModelCopyWithImpl(this._self, this._then);
 
-  final BoardColumn _self;
-  final $Res Function(BoardColumn) _then;
+  final BoardColumnModel _self;
+  final $Res Function(BoardColumnModel) _then;
 
-/// Create a copy of BoardColumn
+/// Create a copy of BoardColumnModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,tasks: null == tasks ? _self.tasks : tasks // ignore: cast_nullable_to_non_nullable
-as List<Task>,
+as List<TaskModel>,
   ));
 }
 
@@ -81,34 +81,34 @@ as List<Task>,
 /// @nodoc
 @JsonSerializable()
 
-class _BoardColumn implements BoardColumn {
-  const _BoardColumn({required this.id, required this.title, required final  List<Task> tasks}): _tasks = tasks;
-  factory _BoardColumn.fromJson(Map<String, dynamic> json) => _$BoardColumnFromJson(json);
+class _BoardColumnModel implements BoardColumnModel {
+  const _BoardColumnModel({required this.id, required this.title, required final  List<TaskModel> tasks}): _tasks = tasks;
+  factory _BoardColumnModel.fromJson(Map<String, dynamic> json) => _$BoardColumnModelFromJson(json);
 
 @override final  String id;
 @override final  String title;
- final  List<Task> _tasks;
-@override List<Task> get tasks {
+ final  List<TaskModel> _tasks;
+@override List<TaskModel> get tasks {
   if (_tasks is EqualUnmodifiableListView) return _tasks;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tasks);
 }
 
 
-/// Create a copy of BoardColumn
+/// Create a copy of BoardColumnModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$BoardColumnCopyWith<_BoardColumn> get copyWith => __$BoardColumnCopyWithImpl<_BoardColumn>(this, _$identity);
+_$BoardColumnModelCopyWith<_BoardColumnModel> get copyWith => __$BoardColumnModelCopyWithImpl<_BoardColumnModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$BoardColumnToJson(this, );
+  return _$BoardColumnModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BoardColumn&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._tasks, _tasks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BoardColumnModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._tasks, _tasks));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -117,18 +117,18 @@ int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEqualit
 
 @override
 String toString() {
-  return 'BoardColumn(id: $id, title: $title, tasks: $tasks)';
+  return 'BoardColumnModel(id: $id, title: $title, tasks: $tasks)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$BoardColumnCopyWith<$Res> implements $BoardColumnCopyWith<$Res> {
-  factory _$BoardColumnCopyWith(_BoardColumn value, $Res Function(_BoardColumn) _then) = __$BoardColumnCopyWithImpl;
+abstract mixin class _$BoardColumnModelCopyWith<$Res> implements $BoardColumnModelCopyWith<$Res> {
+  factory _$BoardColumnModelCopyWith(_BoardColumnModel value, $Res Function(_BoardColumnModel) _then) = __$BoardColumnModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, List<Task> tasks
+ String id, String title, List<TaskModel> tasks
 });
 
 
@@ -136,21 +136,21 @@ $Res call({
 
 }
 /// @nodoc
-class __$BoardColumnCopyWithImpl<$Res>
-    implements _$BoardColumnCopyWith<$Res> {
-  __$BoardColumnCopyWithImpl(this._self, this._then);
+class __$BoardColumnModelCopyWithImpl<$Res>
+    implements _$BoardColumnModelCopyWith<$Res> {
+  __$BoardColumnModelCopyWithImpl(this._self, this._then);
 
-  final _BoardColumn _self;
-  final $Res Function(_BoardColumn) _then;
+  final _BoardColumnModel _self;
+  final $Res Function(_BoardColumnModel) _then;
 
-/// Create a copy of BoardColumn
+/// Create a copy of BoardColumnModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? tasks = null,}) {
-  return _then(_BoardColumn(
+  return _then(_BoardColumnModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,tasks: null == tasks ? _self._tasks : tasks // ignore: cast_nullable_to_non_nullable
-as List<Task>,
+as List<TaskModel>,
   ));
 }
 

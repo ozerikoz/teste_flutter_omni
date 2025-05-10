@@ -6,13 +6,14 @@ part "board_model.freezed.dart";
 part "board_model.g.dart";
 
 @freezed
-sealed class Board with _$Board {
-  const factory Board({
+sealed class BoardModel with _$BoardModel {
+  const factory BoardModel({
     required String id,
     required String title,
-    required List<User> members,
-    required List<Team> teams,
-  }) = _Board;
+    required List<UserModel> members,
+    required List<TeamModel> teams,
+  }) = _BoardModel;
 
-  factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
+  factory BoardModel.fromJson(Map<String, dynamic> json) =>
+      _$BoardModelFromJson(json);
 }

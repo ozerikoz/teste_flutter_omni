@@ -92,7 +92,7 @@ void main() {
           () => mockSharedPreferencesService.getStringList(columnListKey),
         ).thenReturn([]);
 
-        final existingColumn = BoardColumn(
+        final existingColumn = BoardColumnModel(
           id: columnId,
           title: columnTitle,
           tasks: [],
@@ -143,21 +143,21 @@ void main() {
         const String columnUpdatedTitle = "Updated Title";
         const String columnId = "existing-id";
 
-        final originalColumn = BoardColumn(
+        final originalColumn = BoardColumnModel(
           id: columnId,
           title: columnTitle,
           tasks: [
-            Task(id: "task-id-1", title: "task-title-1"),
-            Task(id: "task-id-2", title: "task-title-2"),
+            TaskModel(id: "task-id-1", title: "task-title-1"),
+            TaskModel(id: "task-id-2", title: "task-title-2"),
           ],
         );
 
-        final updatedColumn = BoardColumn(
+        final updatedColumn = BoardColumnModel(
           id: columnId,
           title: columnUpdatedTitle,
           tasks: [
-            Task(id: "task-id-1", title: "task-title-1"),
-            Task(id: "task-id-2", title: "task-title-2"),
+            TaskModel(id: "task-id-1", title: "task-title-1"),
+            TaskModel(id: "task-id-2", title: "task-title-2"),
           ],
         );
 
@@ -201,12 +201,12 @@ void main() {
         const String columnTitle = "Delete Me";
         const String columnId = "delete-id";
 
-        final columnToDelete = BoardColumn(
+        final columnToDelete = BoardColumnModel(
           id: columnId,
           title: columnTitle,
           tasks: [
-            Task(id: "task-id-1", title: "task-title-1"),
-            Task(id: "task-id-2", title: "task-title-2"),
+            TaskModel(id: "task-id-1", title: "task-title-1"),
+            TaskModel(id: "task-id-2", title: "task-title-2"),
           ],
         );
 
@@ -240,16 +240,16 @@ void main() {
         // Arrange
         final columnListKey = repository.getColumnListKey(testBoardId);
 
-        final column1 = BoardColumn(
+        final column1 = BoardColumnModel(
           id: "column-1",
           title: "Column 1",
           tasks: [],
         );
 
-        final column2 = BoardColumn(
+        final column2 = BoardColumnModel(
           id: "column-2",
           title: "Column 2",
-          tasks: [Task(id: "task-1", title: "Task 1")],
+          tasks: [TaskModel(id: "task-1", title: "Task 1")],
         );
 
         when(

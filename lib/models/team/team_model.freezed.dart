@@ -14,22 +14,22 @@ part of 'team_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Team {
+mixin _$TeamModel {
 
  String get id; String get name; String get color;
-/// Create a copy of Team
+/// Create a copy of TeamModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$TeamCopyWith<Team> get copyWith => _$TeamCopyWithImpl<Team>(this as Team, _$identity);
+$TeamModelCopyWith<TeamModel> get copyWith => _$TeamModelCopyWithImpl<TeamModel>(this as TeamModel, _$identity);
 
-  /// Serializes this Team to a JSON map.
+  /// Serializes this TeamModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Team&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TeamModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,15 +38,15 @@ int get hashCode => Object.hash(runtimeType,id,name,color);
 
 @override
 String toString() {
-  return 'Team(id: $id, name: $name, color: $color)';
+  return 'TeamModel(id: $id, name: $name, color: $color)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $TeamCopyWith<$Res>  {
-  factory $TeamCopyWith(Team value, $Res Function(Team) _then) = _$TeamCopyWithImpl;
+abstract mixin class $TeamModelCopyWith<$Res>  {
+  factory $TeamModelCopyWith(TeamModel value, $Res Function(TeamModel) _then) = _$TeamModelCopyWithImpl;
 @useResult
 $Res call({
  String id, String name, String color
@@ -57,14 +57,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$TeamCopyWithImpl<$Res>
-    implements $TeamCopyWith<$Res> {
-  _$TeamCopyWithImpl(this._self, this._then);
+class _$TeamModelCopyWithImpl<$Res>
+    implements $TeamModelCopyWith<$Res> {
+  _$TeamModelCopyWithImpl(this._self, this._then);
 
-  final Team _self;
-  final $Res Function(Team) _then;
+  final TeamModel _self;
+  final $Res Function(TeamModel) _then;
 
-/// Create a copy of Team
+/// Create a copy of TeamModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? color = null,}) {
   return _then(_self.copyWith(
@@ -81,28 +81,28 @@ as String,
 /// @nodoc
 @JsonSerializable()
 
-class _Team implements Team {
-  const _Team({required this.id, required this.name, required this.color});
-  factory _Team.fromJson(Map<String, dynamic> json) => _$TeamFromJson(json);
+class _TeamModel implements TeamModel {
+  const _TeamModel({required this.id, required this.name, required this.color});
+  factory _TeamModel.fromJson(Map<String, dynamic> json) => _$TeamModelFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  String color;
 
-/// Create a copy of Team
+/// Create a copy of TeamModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$TeamCopyWith<_Team> get copyWith => __$TeamCopyWithImpl<_Team>(this, _$identity);
+_$TeamModelCopyWith<_TeamModel> get copyWith => __$TeamModelCopyWithImpl<_TeamModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$TeamToJson(this, );
+  return _$TeamModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Team&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TeamModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -111,15 +111,15 @@ int get hashCode => Object.hash(runtimeType,id,name,color);
 
 @override
 String toString() {
-  return 'Team(id: $id, name: $name, color: $color)';
+  return 'TeamModel(id: $id, name: $name, color: $color)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
-  factory _$TeamCopyWith(_Team value, $Res Function(_Team) _then) = __$TeamCopyWithImpl;
+abstract mixin class _$TeamModelCopyWith<$Res> implements $TeamModelCopyWith<$Res> {
+  factory _$TeamModelCopyWith(_TeamModel value, $Res Function(_TeamModel) _then) = __$TeamModelCopyWithImpl;
 @override @useResult
 $Res call({
  String id, String name, String color
@@ -130,17 +130,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$TeamCopyWithImpl<$Res>
-    implements _$TeamCopyWith<$Res> {
-  __$TeamCopyWithImpl(this._self, this._then);
+class __$TeamModelCopyWithImpl<$Res>
+    implements _$TeamModelCopyWith<$Res> {
+  __$TeamModelCopyWithImpl(this._self, this._then);
 
-  final _Team _self;
-  final $Res Function(_Team) _then;
+  final _TeamModel _self;
+  final $Res Function(_TeamModel) _then;
 
-/// Create a copy of Team
+/// Create a copy of TeamModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? color = null,}) {
-  return _then(_Team(
+  return _then(_TeamModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable

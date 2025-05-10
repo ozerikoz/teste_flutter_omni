@@ -5,13 +5,13 @@ part "board_column_model.freezed.dart";
 part "board_column_model.g.dart";
 
 @freezed
-sealed class BoardColumn with _$BoardColumn {
-  const factory BoardColumn({
+sealed class BoardColumnModel with _$BoardColumnModel {
+  const factory BoardColumnModel({
     required String id,
     required String title,
-    required List<Task> tasks,
-  }) = _BoardColumn;
+    required List<TaskModel> tasks,
+  }) = _BoardColumnModel;
 
-  factory BoardColumn.fromJson(Map<String, dynamic> json) =>
-      _$BoardColumnFromJson(json);
+  factory BoardColumnModel.fromJson(Map<String, dynamic> json) =>
+      _$BoardColumnModelFromJson(json);
 }

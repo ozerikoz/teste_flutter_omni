@@ -4,12 +4,13 @@ part "team_model.freezed.dart";
 part "team_model.g.dart";
 
 @freezed
-sealed class Team with _$Team {
-  const factory Team({
+sealed class TeamModel with _$TeamModel {
+  const factory TeamModel({
     required String id,
     required String name,
     required String color,
-  }) = _Team;
+  }) = _TeamModel;
 
-  factory Team.fromJson(Map<String, dynamic> json) => _$TeamFromJson(json);
+  factory TeamModel.fromJson(Map<String, dynamic> json) =>
+      _$TeamModelFromJson(json);
 }

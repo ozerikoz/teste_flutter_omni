@@ -14,22 +14,22 @@ part of 'board_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Board {
+mixin _$BoardModel {
 
- String get id; String get title; List<User> get members; List<Team> get teams;
-/// Create a copy of Board
+ String get id; String get title; List<UserModel> get members; List<TeamModel> get teams;
+/// Create a copy of BoardModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$BoardCopyWith<Board> get copyWith => _$BoardCopyWithImpl<Board>(this as Board, _$identity);
+$BoardModelCopyWith<BoardModel> get copyWith => _$BoardModelCopyWithImpl<BoardModel>(this as BoardModel, _$identity);
 
-  /// Serializes this Board to a JSON map.
+  /// Serializes this BoardModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Board&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.teams, teams));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BoardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.teams, teams));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,18 +38,18 @@ int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEqualit
 
 @override
 String toString() {
-  return 'Board(id: $id, title: $title, members: $members, teams: $teams)';
+  return 'BoardModel(id: $id, title: $title, members: $members, teams: $teams)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $BoardCopyWith<$Res>  {
-  factory $BoardCopyWith(Board value, $Res Function(Board) _then) = _$BoardCopyWithImpl;
+abstract mixin class $BoardModelCopyWith<$Res>  {
+  factory $BoardModelCopyWith(BoardModel value, $Res Function(BoardModel) _then) = _$BoardModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, List<User> members, List<Team> teams
+ String id, String title, List<UserModel> members, List<TeamModel> teams
 });
 
 
@@ -57,22 +57,22 @@ $Res call({
 
 }
 /// @nodoc
-class _$BoardCopyWithImpl<$Res>
-    implements $BoardCopyWith<$Res> {
-  _$BoardCopyWithImpl(this._self, this._then);
+class _$BoardModelCopyWithImpl<$Res>
+    implements $BoardModelCopyWith<$Res> {
+  _$BoardModelCopyWithImpl(this._self, this._then);
 
-  final Board _self;
-  final $Res Function(Board) _then;
+  final BoardModel _self;
+  final $Res Function(BoardModel) _then;
 
-/// Create a copy of Board
+/// Create a copy of BoardModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? members = null,Object? teams = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
-as List<User>,teams: null == teams ? _self.teams : teams // ignore: cast_nullable_to_non_nullable
-as List<Team>,
+as List<UserModel>,teams: null == teams ? _self.teams : teams // ignore: cast_nullable_to_non_nullable
+as List<TeamModel>,
   ));
 }
 
@@ -82,41 +82,41 @@ as List<Team>,
 /// @nodoc
 @JsonSerializable()
 
-class _Board implements Board {
-  const _Board({required this.id, required this.title, required final  List<User> members, required final  List<Team> teams}): _members = members,_teams = teams;
-  factory _Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
+class _BoardModel implements BoardModel {
+  const _BoardModel({required this.id, required this.title, required final  List<UserModel> members, required final  List<TeamModel> teams}): _members = members,_teams = teams;
+  factory _BoardModel.fromJson(Map<String, dynamic> json) => _$BoardModelFromJson(json);
 
 @override final  String id;
 @override final  String title;
- final  List<User> _members;
-@override List<User> get members {
+ final  List<UserModel> _members;
+@override List<UserModel> get members {
   if (_members is EqualUnmodifiableListView) return _members;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_members);
 }
 
- final  List<Team> _teams;
-@override List<Team> get teams {
+ final  List<TeamModel> _teams;
+@override List<TeamModel> get teams {
   if (_teams is EqualUnmodifiableListView) return _teams;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_teams);
 }
 
 
-/// Create a copy of Board
+/// Create a copy of BoardModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$BoardCopyWith<_Board> get copyWith => __$BoardCopyWithImpl<_Board>(this, _$identity);
+_$BoardModelCopyWith<_BoardModel> get copyWith => __$BoardModelCopyWithImpl<_BoardModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$BoardToJson(this, );
+  return _$BoardModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Board&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._teams, _teams));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BoardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._teams, _teams));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -125,18 +125,18 @@ int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEqualit
 
 @override
 String toString() {
-  return 'Board(id: $id, title: $title, members: $members, teams: $teams)';
+  return 'BoardModel(id: $id, title: $title, members: $members, teams: $teams)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$BoardCopyWith<$Res> implements $BoardCopyWith<$Res> {
-  factory _$BoardCopyWith(_Board value, $Res Function(_Board) _then) = __$BoardCopyWithImpl;
+abstract mixin class _$BoardModelCopyWith<$Res> implements $BoardModelCopyWith<$Res> {
+  factory _$BoardModelCopyWith(_BoardModel value, $Res Function(_BoardModel) _then) = __$BoardModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, List<User> members, List<Team> teams
+ String id, String title, List<UserModel> members, List<TeamModel> teams
 });
 
 
@@ -144,22 +144,22 @@ $Res call({
 
 }
 /// @nodoc
-class __$BoardCopyWithImpl<$Res>
-    implements _$BoardCopyWith<$Res> {
-  __$BoardCopyWithImpl(this._self, this._then);
+class __$BoardModelCopyWithImpl<$Res>
+    implements _$BoardModelCopyWith<$Res> {
+  __$BoardModelCopyWithImpl(this._self, this._then);
 
-  final _Board _self;
-  final $Res Function(_Board) _then;
+  final _BoardModel _self;
+  final $Res Function(_BoardModel) _then;
 
-/// Create a copy of Board
+/// Create a copy of BoardModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? members = null,Object? teams = null,}) {
-  return _then(_Board(
+  return _then(_BoardModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
-as List<User>,teams: null == teams ? _self._teams : teams // ignore: cast_nullable_to_non_nullable
-as List<Team>,
+as List<UserModel>,teams: null == teams ? _self._teams : teams // ignore: cast_nullable_to_non_nullable
+as List<TeamModel>,
   ));
 }
 

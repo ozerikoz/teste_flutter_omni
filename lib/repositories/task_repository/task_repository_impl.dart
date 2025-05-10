@@ -17,13 +17,13 @@ class TaskRepositoryImpl implements TaskRepository {
   String getTaskListKey(String columnId) => 'tasks_$columnId';
 
   @override
-  Future<Task> addTask({
+  Future<TaskModel> addTask({
     required String columnId,
     required String taskTitle,
   }) async {
     final key = getTaskListKey(columnId);
 
-    final task = Task(id: Uuid().v4(), title: taskTitle);
+    final task = TaskModel(id: Uuid().v4(), title: taskTitle);
 
     try {
       // Recupera a lista atual de tarefas armazenadas
@@ -68,7 +68,10 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<Task> editTask({required String columnId, required Task task}) async {
+  Future<TaskModel> editTask({
+    required String columnId,
+    required TaskModel task,
+  }) async {
     final key = getTaskListKey(columnId);
 
     try {

@@ -6,14 +6,15 @@ part "task_model.freezed.dart";
 part "task_model.g.dart";
 
 @freezed
-sealed class Task with _$Task {
-  const factory Task({
+sealed class TaskModel with _$TaskModel {
+  const factory TaskModel({
     required String id,
     required String title,
     String? description,
-    List<Team>? teams,
-    List<User>? members,
-  }) = _Task;
+    List<TeamModel>? teams,
+    List<UserModel>? members,
+  }) = _TaskModel;
 
-  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
+  factory TaskModel.fromJson(Map<String, dynamic> json) =>
+      _$TaskModelFromJson(json);
 }

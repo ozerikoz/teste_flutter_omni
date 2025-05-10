@@ -17,7 +17,7 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
   String getColumnListKey(String boardId) => "columns_$boardId";
 
   @override
-  Future<BoardColumn> addBoardColumn({
+  Future<BoardColumnModel> addBoardColumn({
     required String boardId,
     required String boardColumnTitle,
   }) async {
@@ -25,7 +25,7 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
 
     final boardColumnId = Uuid().v4();
 
-    final boardColumn = BoardColumn(
+    final boardColumn = BoardColumnModel(
       id: boardColumnId,
       title: boardColumnTitle,
       tasks: [],
@@ -47,9 +47,9 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
   }
 
   @override
-  Future<BoardColumn> editBoardColumn({
+  Future<BoardColumnModel> editBoardColumn({
     required String boardId,
-    required BoardColumn boardColumn,
+    required BoardColumnModel boardColumn,
   }) async {
     final key = getColumnListKey(boardId);
     try {
@@ -98,14 +98,14 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
   }
 
   @override
-  List<BoardColumn> fetchBoardColumns({required String boardId}) {
+  List<BoardColumnModel> fetchBoardColumns({required String boardId}) {
     final key = getColumnListKey(boardId);
 
     try {
       final columns = _sharedPreferencesService.getStringList(key) ?? [];
 
       return columns
-          .map((columnStr) => BoardColumn.fromJson(jsonDecode(columnStr)))
+          .map((columnStr) => BoardColumnModel.fromJson(jsonDecode(columnStr)))
           .toList();
     } catch (e) {
       throw Exception("Erro ao recuperar as colunas do quadro $boardId: $e");

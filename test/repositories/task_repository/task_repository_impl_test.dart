@@ -65,7 +65,7 @@ void main() {
         expect(decodedTask['id'], isNotEmpty);
 
         // Verificar o objeto retornado
-        expect(result, isA<Task>());
+        expect(result, isA<TaskModel>());
         expect(result.title, equals(taskTitle));
         expect(result.id, isNotEmpty);
       });
@@ -78,8 +78,8 @@ void main() {
         const originalTitle = 'Tarefa Original';
         const updatedTitle = 'Tarefa Atualizada';
 
-        final originalTask = Task(id: taskId, title: originalTitle);
-        final updatedTask = Task(id: taskId, title: updatedTitle);
+        final originalTask = TaskModel(id: taskId, title: originalTitle);
+        final updatedTask = TaskModel(id: taskId, title: updatedTitle);
         final taskKey = taskRepository.getTaskListKey(columnId);
 
         when(
@@ -118,7 +118,7 @@ void main() {
         expect(decodedTask['title'], equals(updatedTitle));
 
         // Verificar o objeto retornado
-        expect(result, isA<Task>());
+        expect(result, isA<TaskModel>());
         expect(result.id, equals(taskId));
         expect(result.title, equals(updatedTitle));
       });
@@ -130,7 +130,7 @@ void main() {
         const taskId = 'task-123';
         const taskTitle = 'Tarefa para Deletar';
 
-        final task = Task(id: taskId, title: taskTitle);
+        final task = TaskModel(id: taskId, title: taskTitle);
         final taskKey = taskRepository.getTaskListKey(columnId);
 
         when(
