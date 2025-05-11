@@ -17,13 +17,13 @@ class AddCardButton extends StatelessWidget {
           child: Row(
             children: [
               Icon(
-                Icons.add,
+                Icons.add_rounded,
                 size: 16,
                 color: Theme.of(context).iconTheme.color,
               ),
               const SizedBox(width: 4),
               Text(
-                'Adicionar tarefa',
+                'Adicionar um cartão',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],
