@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_teste_omni/models/team/team_model.dart';
 import 'package:flutter_teste_omni/models/user/user_model.dart';
 import 'package:flutter_teste_omni/views/components/add_card_button.dart';
 import 'package:flutter_teste_omni/views/components/task_card.dart';
 import 'package:flutter_teste_omni/views/components/title_textfield.dart';
+import 'package:flutter_teste_omni/views/modals/task_modal.dart';
 
 class BoardColumn extends StatelessWidget {
   final String title;
@@ -32,6 +34,7 @@ class BoardColumn extends StatelessWidget {
                   onChanged: (_) {},
                 ),
               ),
+              const SizedBox(width: 8),
               IconButton(
                 icon: const Icon(Icons.delete_outline_rounded),
                 visualDensity: VisualDensity.compact,
@@ -42,30 +45,80 @@ class BoardColumn extends StatelessWidget {
               ),
             ],
           ),
-          ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            shrinkWrap: true,
-            primary: false,
-            itemCount: tasks.length,
-            itemBuilder: (context, index) {
-              return TaskCard(
-                onTap: () {},
-                title: title,
-                description: "Descrição da tarefa",
-                members: [
-                  UserModel(id: "DWADWAD", name: "pedro"),
-                  UserModel(id: "DWADWAD", name: "jao"),
-                  UserModel(id: "DWADWAD", name: "jao"),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.builder(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    primary: false,
+                    shrinkWrap: true,
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) {
+                      return TaskCard(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return TaskModal(
+                                title: "Título da Tarefa",
+                                description: "Descrição da tarefa",
+                                members: [
+                                  UserModel(id: "1", name: "Pedro"),
+                                  UserModel(id: "2", name: "João"),
+                                ],
+                                teams: [
+                                  TeamModel(
+                                    id: "1",
+                                    name: "DESIGN",
+                                    colorArgb: 0xFFE74C3C,
+                                  ),
+                                  TeamModel(
+                                    id: "2",
+                                    name: "DEV",
+                                    colorArgb: 0xFFE74C3C,
+                                  ),
+                                  TeamModel(
+                                    id: "3",
+                                    name: "PRODUTO",
+                                    colorArgb: 0xFFE74C3C,
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        title: title,
+                        description: "Descrição da tarefa",
+                        members: [
+                          UserModel(id: "1", name: "Pedro"),
+                          UserModel(id: "2", name: "João"),
+                        ],
+                        teams: [
+                          TeamModel(
+                            id: "1",
+                            name: "DESIGN",
+                            colorArgb: 0xFFE74C3C,
+                          ),
+                          TeamModel(
+                            id: "2",
+                            name: "DEV",
+                            colorArgb: 0xFFE74C3C,
+                          ),
+                          TeamModel(
+                            id: "3",
+                            name: "PRODUTO",
+                            colorArgb: 0xFFE74C3C,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ],
-                teams: [
-                  // TeamModel(id: "dwadwa", name: "time1", colorArgb: 4282198599),
-                  // TeamModel(id: "dwadwa", name: "time2", colorArgb: 4292131163),
-                  // TeamModel(id: "dwadwa", name: "time2", colorArgb: 4282953266),
-                ],
-              );
-            },
+              ),
+            ),
           ),
-          Spacer(),
+          const SizedBox(height: 8),
           AddCardButton(onTap: () {}),
         ],
       ),
