@@ -34,6 +34,7 @@ abstract final class AppColors {
     surface: AppColors.grey4,
     onSurface: AppColors.grey6,
     error: AppColors.red2,
+    errorContainer: AppColors.red1,
     onError: AppColors.white1,
   );
 
@@ -47,6 +48,7 @@ abstract final class AppColors {
     surface: AppColors.grey2,
     onSurface: AppColors.white1,
     error: AppColors.red2,
+    errorContainer: AppColors.red1,
     onError: AppColors.black1,
   );
 }
