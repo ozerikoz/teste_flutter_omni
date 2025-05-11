@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_teste_omni/models/team/team_model.dart';
 import 'package:flutter_teste_omni/models/user/user_model.dart';
+import 'package:flutter_teste_omni/views/components/label_indicator.dart';
+import 'package:flutter_teste_omni/views/components/user_avatar.dart';
 
 class TaskCard extends StatefulWidget {
   final Function()? onTap;
@@ -28,10 +30,12 @@ class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: Material(
         child: InkWell(
+          mouseCursor: SystemMouseCursors.click,
           onTap: widget.onTap,
           borderRadius: BorderRadius.circular(8),
           child: ConstrainedBox(
@@ -68,14 +72,9 @@ class _TaskCardState extends State<TaskCard> {
                               children: widget.teams?.map((team) {
                                     return Tooltip(
                                       message: "Equipe: ${team.name}",
-                                      child: Container(
-                                        height: 8,
-                                        width: 36,
-                                        decoration: BoxDecoration(
-                                          color: Color(team.colorArgb),
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                        ),
+                                      child: LabelIndicator(
+                                        onTap: () {},
+                                        color: Color(team.colorArgb),
                                       ),
                                     );
                                   }).toList() ??
@@ -92,8 +91,10 @@ class _TaskCardState extends State<TaskCard> {
                         ),
                       ],
                     ),
-                    Text(widget.title,
-                        style: Theme.of(context).textTheme.bodyMedium),
+                    Text(
+                      widget.title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     if (widget.description != null)
                       Padding(
                         padding: const EdgeInsets.only(top: 4),
@@ -115,11 +116,10 @@ class _TaskCardState extends State<TaskCard> {
                             spacing: 4,
                             runSpacing: 8,
                             children: widget.members?.map((member) {
-                                  return CircleAvatar(
-                                    radius: 12,
-                                    backgroundImage: NetworkImage(
-                                      "https://avatar.iran.liara.run/username?username=${member.name}",
-                                    ),
+                                  return UserAvatar(
+                                    onTap: () {},
+                                    imageUrl:
+                                        "https://avatar.iran.liara.run/username?username=${member.name}",
                                   );
                                 }).toList() ??
                                 [],
