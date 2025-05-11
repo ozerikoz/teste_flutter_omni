@@ -1,127 +1,137 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teste_omni/models/team/team_model.dart';
-import 'package:flutter_teste_omni/models/user/user_model.dart';
+import 'package:flutter_teste_omni/models/board_column/board_column_model.dart';
+import 'package:flutter_teste_omni/models/task/task_model.dart';
 import 'package:flutter_teste_omni/views/components/add_card_button.dart';
 import 'package:flutter_teste_omni/views/components/task_card.dart';
 import 'package:flutter_teste_omni/views/components/title_textfield.dart';
 import 'package:flutter_teste_omni/views/modals/task_modal.dart';
 
-class BoardColumn extends StatelessWidget {
-  final String title;
-  final List<String> tasks;
+class BoardColumn extends StatefulWidget {
+  final BoardColumnModel column;
+  final Function(TaskModel task, String columnTitle) onTaskMoved;
 
-  const BoardColumn({super.key, required this.title, required this.tasks});
+  const BoardColumn({
+    super.key,
+    required this.column,
+    required this.onTaskMoved,
+  });
+
+  @override
+  State<BoardColumn> createState() => _BoardColumnState();
+}
+
+class _BoardColumnState extends State<BoardColumn> {
+  late TextEditingController titleController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.column.title);
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 272,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      padding: EdgeInsets.fromLTRB(8, 6, 12, 6),
-      decoration: BoxDecoration(
-        color: Theme.of(context).canvasColor,
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return DragTarget<TaskModel>(
+      onAcceptWithDetails: (details) {
+        widget.onTaskMoved(details.data, widget.column.title);
+      },
+      builder: (context, candidateData, rejectedData) {
+        return Container(
+          width: 272,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: EdgeInsets.fromLTRB(8, 6, 12, 6),
+          decoration: BoxDecoration(
+            color: Theme.of(context).canvasColor,
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          ),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: TitleTextField(
-                  initialValue: "Teste1",
-                  onChanged: (_) {},
-                ),
-              ),
-              const SizedBox(width: 8),
-              IconButton(
-                icon: const Icon(Icons.delete_outline_rounded),
-                visualDensity: VisualDensity.compact,
-                padding: EdgeInsets.zero,
-                iconSize: 16,
-                onPressed: () {},
-                tooltip: "Deletar coluna.",
-              ),
-            ],
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    primary: false,
-                    shrinkWrap: true,
-                    itemCount: tasks.length,
-                    itemBuilder: (context, index) {
-                      return TaskCard(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return TaskModal(
-                                title: "Título da Tarefa",
-                                description: "Descrição da tarefa",
-                                members: [
-                                  UserModel(id: "1", name: "Pedro"),
-                                  UserModel(id: "2", name: "João"),
-                                ],
-                                teams: [
-                                  TeamModel(
-                                    id: "1",
-                                    name: "DESIGN",
-                                    colorArgb: 0xFFE74C3C,
-                                  ),
-                                  TeamModel(
-                                    id: "2",
-                                    name: "DEV",
-                                    colorArgb: 0xFFE74C3C,
-                                  ),
-                                  TeamModel(
-                                    id: "3",
-                                    name: "PRODUTO",
-                                    colorArgb: 0xFFE74C3C,
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        title: title,
-                        description: "Descrição da tarefa",
-                        members: [
-                          UserModel(id: "1", name: "Pedro"),
-                          UserModel(id: "2", name: "João"),
-                        ],
-                        teams: [
-                          TeamModel(
-                            id: "1",
-                            name: "DESIGN",
-                            colorArgb: 0xFFE74C3C,
-                          ),
-                          TeamModel(
-                            id: "2",
-                            name: "DEV",
-                            colorArgb: 0xFFE74C3C,
-                          ),
-                          TeamModel(
-                            id: "3",
-                            name: "PRODUTO",
-                            colorArgb: 0xFFE74C3C,
-                          ),
-                        ],
-                      );
-                    },
+                  Flexible(
+                    child: TitleTextField(
+                      controller: titleController,
+                      onChanged: (_) {},
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    icon: const Icon(Icons.delete_outline_rounded),
+                    visualDensity: VisualDensity.compact,
+                    padding: EdgeInsets.zero,
+                    iconSize: 16,
+                    onPressed: () {},
+                    tooltip: "Deletar coluna.",
                   ),
                 ],
               ),
-            ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        shrinkWrap: true,
+                        itemCount: widget.column.tasks.length,
+                        itemBuilder: (context, index) {
+                          final task = widget.column.tasks[index];
+                          return Draggable<TaskModel>(
+                            childWhenDragging: const SizedBox(),
+                            data: task,
+                            feedback: Material(
+                              color: Colors.transparent,
+                              child: TaskCard(
+                                onTap: () {},
+                                title: task.title,
+                                description: task.description ?? "",
+                                members: task.members ?? [],
+                                teams: task.teams ?? [],
+                              ),
+                            ),
+                            child: TaskCard(
+                              onTap: () {
+                                showTaskModal(context, task);
+                              },
+                              title: task.title,
+                              description: task.description ?? "",
+                              members: task.members ?? [],
+                              teams: task.teams ?? [],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              AddCardButton(onTap: () {}),
+            ],
           ),
-          const SizedBox(height: 8),
-          AddCardButton(onTap: () {}),
-        ],
-      ),
+        );
+      },
+    );
+  }
+
+  void showTaskModal(BuildContext context, TaskModel task) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return TaskModal(
+          title: task.title,
+          teams: task.teams,
+          members: task.members,
+          description: task.description,
+        );
+      },
     );
   }
 }

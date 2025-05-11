@@ -34,6 +34,7 @@ class _TaskCardState extends State<TaskCard> {
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: Material(
+        color: Colors.transparent,
         child: InkWell(
           mouseCursor: SystemMouseCursors.click,
           onTap: widget.onTap,
