@@ -28,6 +28,12 @@ abstract class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
+        hintStyle: TextStyle(
+          color: Colors.grey[400],
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey[400],
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.blue1,
@@ -75,7 +81,7 @@ abstract class AppTheme {
       ),
       textTheme: TextTheme(
         bodyMedium: TextStyle(
-          color: AppColors.grey3,
+          color: AppColors.white2,
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
@@ -87,6 +93,12 @@ abstract class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
+        hintStyle: TextStyle(
+          color: Colors.grey[500],
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey[500],
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.blue1,
@@ -117,6 +129,21 @@ abstract class AppTheme {
         thumbColor: WidgetStateProperty.all(Colors.grey),
         thickness: WidgetStateProperty.all(6),
         radius: const Radius.circular(8),
+      ),
+      tooltipTheme: TooltipThemeData(
+        textStyle: TextStyle(
+          color: AppColors.grey3,
+          fontSize: 11,
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
+        ),
       ),
     );
   }
