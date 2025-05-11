@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_teste_omni/views/theme/colors.dart';
 
 class TitleTextField extends StatelessWidget {
-  final String initialValue;
+  final TextEditingController controller;
   final Function(String)? onChanged;
 
   const TitleTextField({
     super.key,
-    required this.initialValue,
+    required this.controller,
     required this.onChanged,
   });
 
@@ -15,7 +15,7 @@ class TitleTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: AppColors.white1,
-      initialValue: initialValue,
+      controller: controller,
       mouseCursor: SystemMouseCursors.click,
       style: Theme.of(context).textTheme.bodyLarge,
       minLines: 1,
