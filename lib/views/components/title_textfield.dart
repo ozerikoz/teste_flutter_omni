@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_teste_omni/views/theme/colors.dart';
 
 class TitleTextField extends StatelessWidget {
   final String initialValue;
@@ -13,6 +14,7 @@ class TitleTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: AppColors.white1,
       initialValue: initialValue,
       mouseCursor: SystemMouseCursors.click,
       style: Theme.of(context).textTheme.bodyLarge,
