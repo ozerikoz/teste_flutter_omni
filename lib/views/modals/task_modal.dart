@@ -75,7 +75,7 @@ class _TaskModalState extends State<TaskModal> {
                     children: [
                       Flexible(
                         child: TitleTextField(
-                          initialValue: "Teste1",
+                          controller: _titleController,
                           onChanged: (_) {},
                         ),
                       ),
