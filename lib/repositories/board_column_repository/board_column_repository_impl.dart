@@ -55,13 +55,12 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
     try {
       final current = _sharedPreferencesService.getStringList(key) ?? [];
 
-      final updated =
-          current.map((columnStr) {
-            final decoded = jsonDecode(columnStr);
-            return decoded["id"] == boardColumn.id
-                ? jsonEncode(boardColumn.toJson())
-                : columnStr;
-          }).toList();
+      final updated = current.map((columnStr) {
+        final decoded = jsonDecode(columnStr);
+        return decoded["id"] == boardColumn.id
+            ? jsonEncode(boardColumn.toJson())
+            : columnStr;
+      }).toList();
 
       await _sharedPreferencesService.setStringList(key, updated);
 
@@ -83,11 +82,10 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
     try {
       final current = _sharedPreferencesService.getStringList(key) ?? [];
 
-      final updated =
-          current.where((columnStr) {
-            final decoded = jsonDecode(columnStr);
-            return decoded["id"] != boardColumnId;
-          }).toList();
+      final updated = current.where((columnStr) {
+        final decoded = jsonDecode(columnStr);
+        return decoded["id"] != boardColumnId;
+      }).toList();
 
       await _sharedPreferencesService.setStringList(key, updated);
     } catch (e) {
@@ -110,5 +108,26 @@ class BoardColumnRepositoryImpl extends BoardColumnRepository {
     } catch (e) {
       throw Exception("Erro ao recuperar as colunas do quadro $boardId: $e");
     }
+  }
+
+  List<BoardColumnModel> updateBoardColumnOrder({
+    required String boardId,
+    required List<BoardColumnModel> columns,
+  }) {
+    final key = getColumnListKey(boardId);
+
+    try {
+      final updated = columns.map((column) {
+        return jsonEncode(column.toJson());
+      }).toList();
+
+      _sharedPreferencesService.setStringList(key, updated);
+    } catch (e) {
+      throw Exception(
+        "Erro ao atualizar a ordem das colunas do quadro $boardId: $e",
+      );
+    }
+
+    return columns;
   }
 }
