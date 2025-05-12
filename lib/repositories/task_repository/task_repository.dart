@@ -1,7 +1,7 @@
 import 'package:flutter_teste_omni/models/task/task_model.dart';
 
 /// Interface para TaskRepository
-abstract interface class TaskRepository {
+abstract class TaskRepository {
   /// Método para adicionar uma [Task]
   Future<TaskModel> addTask({
     required String columnId,
