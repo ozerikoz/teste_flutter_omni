@@ -7,11 +7,13 @@ import 'package:flutter_teste_omni/views/components/title_textfield.dart';
 import 'package:flutter_teste_omni/views/modals/task_modal.dart';
 
 class BoardColumn extends StatefulWidget {
+  final int? index;
   final BoardColumnModel column;
   final Function(TaskModel task, String columnTitle) onTaskMoved;
 
   const BoardColumn({
     super.key,
+    required this.index,
     required this.column,
     required this.onTaskMoved,
   });
@@ -44,7 +46,6 @@ class _BoardColumnState extends State<BoardColumn> {
       builder: (context, candidateData, rejectedData) {
         return Container(
           width: 272,
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           padding: EdgeInsets.fromLTRB(8, 6, 12, 6),
           decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
@@ -62,15 +63,20 @@ class _BoardColumnState extends State<BoardColumn> {
                       onChanged: (_) {},
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    icon: const Icon(Icons.delete_outline_rounded),
-                    visualDensity: VisualDensity.compact,
-                    padding: EdgeInsets.zero,
-                    iconSize: 16,
-                    onPressed: () {},
-                    tooltip: "Deletar coluna.",
-                  ),
+                  if (widget.index != null && widget.index! > 0)
+                    Row(
+                      children: [
+                        const SizedBox(width: 8),
+                        IconButton(
+                          icon: const Icon(Icons.delete_outline_rounded),
+                          visualDensity: VisualDensity.compact,
+                          padding: EdgeInsets.zero,
+                          iconSize: 16,
+                          onPressed: () {},
+                          tooltip: "Deletar coluna.",
+                        ),
+                      ],
+                    ),
                 ],
               ),
               Expanded(

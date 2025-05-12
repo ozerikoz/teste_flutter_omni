@@ -128,6 +128,7 @@ class _BoardViewState extends State<BoardView> {
               onReorder: onReorder,
               itemCount: boardColumns.length,
               prototypeItem: BoardColumn(
+                index: 0,
                 column: BoardColumnModel(id: '', title: '', tasks: []),
                 onTaskMoved: moveTask,
               ),
@@ -139,12 +140,18 @@ class _BoardViewState extends State<BoardView> {
               },
               itemBuilder: (context, index) {
                 return ReorderableDelayedDragStartListener(
-                  enabled: index > 0,
                   index: index,
                   key: ValueKey(boardColumns[index]),
-                  child: BoardColumn(
-                    column: boardColumns[index],
-                    onTaskMoved: moveTask,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 8,
+                    ),
+                    child: BoardColumn(
+                      index: index,
+                      column: boardColumns[index],
+                      onTaskMoved: moveTask,
+                    ),
                   ),
                 );
               },
