@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 /// Implementação da interface [TaskRepository]
 ///
 /// Utiliza o [SharedPreferencesService] para armazenar e recuperar [Task]s
-class TaskRepositoryImpl implements TaskRepository {
+class TaskRepositoryImpl extends TaskRepository {
   final SharedPreferencesService _sharedPreferencesService;
 
   TaskRepositoryImpl({
@@ -54,11 +54,10 @@ class TaskRepositoryImpl implements TaskRepository {
       final currentTasks = _sharedPreferencesService.getStringList(key) ?? [];
 
       // Remove a tarefa com o id especificado
-      final updated =
-          currentTasks.where((taskStr) {
-            final decoded = jsonDecode(taskStr);
-            return decoded['id'] != taskId;
-          }).toList();
+      final updated = currentTasks.where((taskStr) {
+        final decoded = jsonDecode(taskStr);
+        return decoded['id'] != taskId;
+      }).toList();
 
       // Armazena a lista atualizada de tarefas
       await _sharedPreferencesService.setStringList(key, updated);
@@ -79,13 +78,10 @@ class TaskRepositoryImpl implements TaskRepository {
       final currentTasks = _sharedPreferencesService.getStringList(key) ?? [];
 
       // Atualiza a tarefa com o id especificado
-      final updated =
-          currentTasks.map((taskStr) {
-            final decoded = jsonDecode(taskStr);
-            return decoded['id'] == task.id
-                ? jsonEncode(task.toJson())
-                : taskStr;
-          }).toList();
+      final updated = currentTasks.map((taskStr) {
+        final decoded = jsonDecode(taskStr);
+        return decoded['id'] == task.id ? jsonEncode(task.toJson()) : taskStr;
+      }).toList();
 
       // Armazena a lista atualizada de tarefas
       await _sharedPreferencesService.setStringList(key, updated);
@@ -95,5 +91,26 @@ class TaskRepositoryImpl implements TaskRepository {
     } catch (e) {
       throw Exception('Erro ao editar a tarefa ${task.id}: $e');
     }
+  }
+
+  List<TaskModel> updateTaskColumnOrder({
+    required String columnId,
+    required List<TaskModel> tasks,
+  }) {
+    final key = getTaskListKey(columnId);
+
+    try {
+      final updated = tasks.map((task) {
+        return jsonEncode(task.toJson());
+      }).toList();
+
+      _sharedPreferencesService.setStringList(key, updated);
+    } catch (e) {
+      throw Exception(
+        "Erro ao atualizar a ordem das tarefas da coluna $columnId: $e",
+      );
+    }
+
+    return tasks;
   }
 }
