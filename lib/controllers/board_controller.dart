@@ -1,19 +1,15 @@
 import "package:flutter_teste_omni/models/board_column/board_column_model.dart";
 import "package:get/get.dart";
 import "package:flutter_teste_omni/repositories/board_column_repository/board_column_repository_impl.dart";
-import "package:flutter_teste_omni/services/shared_preferences_service.dart";
 
 class BoardController extends GetxController {
-  final RxList<BoardColumnModel> boardColumns;
-  final BoardColumnRepositoryImpl repository;
+  final BoardColumnRepositoryImpl _boardColumnRepository;
 
+  BoardController({required BoardColumnRepositoryImpl boardColumnRepository})
+      : _boardColumnRepository = boardColumnRepository;
+
+  final RxList<BoardColumnModel> boardColumns = <BoardColumnModel>[].obs;
   final RxBool isLoading = false.obs;
-
-  BoardController({List<BoardColumnModel> initialColumns = const []})
-      : boardColumns = RxList(initialColumns),
-        repository = BoardColumnRepositoryImpl(
-          sharedPreferencesService: Get.find<SharedPreferencesService>(),
-        );
 
   // Método para editar a coluna
   void editColumn(BoardColumnModel updatedColumn) {
@@ -24,7 +20,7 @@ class BoardController extends GetxController {
 
       if (index != -1) {
         boardColumns[index] = updatedColumn;
-        repository.editBoardColumn(
+        _boardColumnRepository.editBoardColumn(
           boardId: "default-board-id",
           boardColumn: updatedColumn,
         );
@@ -39,7 +35,7 @@ class BoardController extends GetxController {
     try {
       boardColumns.removeWhere((col) => col.id == columnId);
 
-      repository.deleteBoardColumn(
+      _boardColumnRepository.deleteBoardColumn(
         boardId: "default-board-id",
         boardColumnId: columnId,
       );
@@ -53,13 +49,13 @@ class BoardController extends GetxController {
     try {
       isLoading.value = true;
 
-      repository.addBoardColumn(
+      _boardColumnRepository.addBoardColumn(
         boardId: "default-board-id",
         boardColumnTitle: newColumn.title,
       );
 
       final updatedColumns =
-          repository.fetchBoardColumns(boardId: "default-board-id");
+          _boardColumnRepository.fetchBoardColumns(boardId: "default-board-id");
 
       boardColumns.assignAll(updatedColumns);
     } catch (e) {
@@ -74,7 +70,8 @@ class BoardController extends GetxController {
     try {
       isLoading.value = true;
 
-      final columns = repository.fetchBoardColumns(boardId: "default-board-id");
+      final columns =
+          _boardColumnRepository.fetchBoardColumns(boardId: "default-board-id");
 
       if (columns.isEmpty) {
         // Se não houver colunas, adiciona uma coluna padrão
@@ -86,7 +83,7 @@ class BoardController extends GetxController {
 
         columns.add(defaultColumn);
 
-        repository.addBoardColumn(
+        _boardColumnRepository.addBoardColumn(
           boardId: "default-board-id",
           boardColumnTitle: defaultColumn.title,
         );
@@ -111,7 +108,7 @@ class BoardController extends GetxController {
     boardColumns.insert(newIndex, column);
 
     // Atualiza a ordem das colunas no repositório
-    repository.updateBoardColumnOrder(
+    _boardColumnRepository.updateBoardColumnOrder(
       boardId: "default-board-id",
       columns: boardColumns,
     );
