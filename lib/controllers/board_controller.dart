@@ -100,4 +100,20 @@ class BoardController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  void onReorder(int oldIndex, int newIndex) {
+    if (oldIndex == 0 || newIndex == 0) {
+      return;
+    }
+
+    final column = boardColumns.removeAt(oldIndex);
+
+    boardColumns.insert(newIndex, column);
+
+    // Atualiza a ordem das colunas no repositório
+    repository.updateBoardColumnOrder(
+      boardId: "default-board-id",
+      columns: boardColumns,
+    );
+  }
 }
