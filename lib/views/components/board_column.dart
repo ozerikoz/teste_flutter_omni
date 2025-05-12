@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_teste_omni/controllers/board_controller.dart';
 import 'package:flutter_teste_omni/models/board_column/board_column_model.dart';
 import 'package:flutter_teste_omni/models/task/task_model.dart';
 import 'package:flutter_teste_omni/views/components/add_card_button.dart';
 import 'package:flutter_teste_omni/views/components/task_card.dart';
 import 'package:flutter_teste_omni/views/components/title_textfield.dart';
 import 'package:flutter_teste_omni/views/modals/task_modal.dart';
+import 'package:get/get.dart';
 
 class BoardColumn extends StatefulWidget {
   final int? index;
@@ -23,11 +25,13 @@ class BoardColumn extends StatefulWidget {
 }
 
 class _BoardColumnState extends State<BoardColumn> {
+  late BoardController boardController;
   late TextEditingController titleController;
 
   @override
   void initState() {
     super.initState();
+    boardController = Get.find<BoardController>();
     titleController = TextEditingController(text: widget.column.title);
   }
 
@@ -60,7 +64,11 @@ class _BoardColumnState extends State<BoardColumn> {
                   Flexible(
                     child: TitleTextField(
                       controller: titleController,
-                      onChanged: (_) {},
+                      onChanged: (title) {
+                        boardController.editColumn(
+                          widget.column.copyWith(title: title),
+                        );
+                      },
                     ),
                   ),
                   if (widget.index != null && widget.index! > 0)
@@ -72,7 +80,9 @@ class _BoardColumnState extends State<BoardColumn> {
                           visualDensity: VisualDensity.compact,
                           padding: EdgeInsets.zero,
                           iconSize: 16,
-                          onPressed: () {},
+                          onPressed: () {
+                            boardController.deleteColumn(widget.column.id);
+                          },
                           tooltip: "Deletar coluna.",
                         ),
                       ],
@@ -89,6 +99,7 @@ class _BoardColumnState extends State<BoardColumn> {
                         itemCount: widget.column.tasks.length,
                         itemBuilder: (context, index) {
                           final task = widget.column.tasks[index];
+
                           return Draggable<TaskModel>(
                             childWhenDragging: const SizedBox(),
                             data: task,
